@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-DB_NAME = "deathgamecharacters.db"
+DB_NAME = "/home/kentanto65/web-app-game/instance/deathgamecharacters.db"
 
 def init_game():
     game = Flask(__name__)
