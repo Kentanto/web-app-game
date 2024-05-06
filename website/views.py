@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify
 from .model import Admin, Dead_people, Items, People, Picked_names, Teams
 from . import db
 from datetime import datetime
@@ -64,7 +64,7 @@ def check_or_modify():
             elif modification_type == "Custom":
                     person.status = additional_info
                     db.session.commit()
-    
+
     return jsonify({'message': 'Success'})
 
 @head.route("/kill_person", methods=["POST"])
@@ -91,8 +91,8 @@ def get_person_info():
             return jsonify({"html": html})
         else:
             return jsonify({"html": "<p>Person not found</p>"})
-        
-    
+
+
 
 def wagner_fischer(s1, s2):
     len_s1, len_s2 = len(s1), len(s2)

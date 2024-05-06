@@ -1,8 +1,8 @@
-html { 
-    font-family: sans-serif; 
-    background:var(--background); 
+html {
+    font-family: sans-serif;
+    background:var(--background);
     color:var(--text);
-    padding: 1rem; 
+    padding: 1rem;
     --text: #e6f0fc;
     --background: #02070e;
     --primary: #84b3ee;
@@ -10,7 +10,7 @@ html {
     --accent: #b22be2;
 }
 
-#overlapshadow-right{ 
+#overlapshadow-right{
     position: fixed;
     top:0px;
     right:-100%;
@@ -21,7 +21,7 @@ html {
     transition: right 0.5s ease;
 }
 
-#RimShadow-right{    
+#RimShadow-right{
     position: fixed;
     top:0px;
     right:-100%;
@@ -33,7 +33,7 @@ html {
     transition: right 0.5s ease;
 }
 
-#overlapshadow-left{ 
+#overlapshadow-left{
     position: fixed;
     top:0px;
     left:-100%;
@@ -52,7 +52,7 @@ html {
     height:100%;
     z-index: 10;
     background-color: transparent;
-    box-shadow: 10px 0px 10px var(--accent);    
+    box-shadow: 10px 0px 10px var(--accent);
     transition: left 0.5s ease;
 }
 
@@ -108,16 +108,16 @@ html {
     right:50%;
     width:0%;
     height:0%;
-    z-index: 11;    
+    z-index: 11;
     text-align: center;
     background-color: var(--secondary);
     background-image:
         linear-gradient(
         to bottom right,
         var(--secondary),
-        var(--accent), 
-        var(--secondary), 
-        var(--accent), 
+        var(--accent),
+        var(--secondary),
+        var(--accent),
         var(--secondary));
     transition: width 0.25s ease,
                 height 0.25s ease,
@@ -288,14 +288,14 @@ html {
 }
 
 .btn-container {
-    position: relative;    
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .btn-container-cursed {
-    position: relative;    
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -396,21 +396,21 @@ html {
         linear-gradient(
         to bottom left,
         var(--accent),
-        var(--secondary), 
-        var(--accent), 
-        var(--secondary), 
+        var(--secondary),
+        var(--accent),
+        var(--secondary),
         var(--accent));
 }
 
-.main_gradient{    
+.main_gradient{
     background-color: var(--secondary);
     background-image:
         linear-gradient(
         to bottom right,
         var(--secondary),
-        var(--accent), 
-        var(--secondary), 
-        var(--accent), 
+        var(--accent),
+        var(--secondary),
+        var(--accent),
         var(--secondary));
 }
 

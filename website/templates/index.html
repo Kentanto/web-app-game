@@ -6,8 +6,8 @@
 
 <body>
     <script src="static/slide_In_functions.js"></script>
-    <div id="main-page-content">     
-    <div id="RimShadow-right"></div> 
+    <div id="main-page-content">
+    <div id="RimShadow-right"></div>
     <div id="RimShadow-left"></div>
     <div id="RimShadow-top"></div>
     <div id="RimShadow-bottom"></div>
@@ -40,7 +40,7 @@
             <form id="person-form" action="/check_modfiy_person" method="post">
                 <label for="person_name">Person's Name:</label>
                 <input required type="text" id="person_name" name="person_name">
-                
+
                 <label for="modify_person">Modify this person?</label>
                 <select id="modify_person" name="modify_person">
                     <option value="yes">Yes</option>
@@ -50,13 +50,13 @@
                 <select id="modification_type" name="modification_type">
                     <option value="alive">Alive</option>
                     <option value="injured">Injured</option>
-                    <option value="disabled">Disabled</option>                  
+                    <option value="disabled">Disabled</option>
                     <option value="Custom">Other</option>
                 </select>
                 <div id="Extra_Info" style="display: none;">
                     <label for="additional_info">label text</label>
                     <input type="text" id="additional_info" name="additional_info">
-                </div>               
+                </div>
                 <button type="submit">Submit</button>
             </form>
             <div id="person-info"></div>
@@ -70,14 +70,14 @@
             <form id="kill-person-form" action="/kill_person" method="post">
                 <label for="target_person" style="font-size: 27px;">Target Person:</label>
                 <input required type="text" id="target_person" name="target_person" style="width: 100%; padding: 8px; font-size: 24px;">
-                
+
                 <label for="killer" style="font-size: 27px;">Killer:</label>
                 <input required type="text" id="killer" name="killer" style="width: 100%; padding: 8px; font-size: 24px;">
-                
+
                 <button class="main_gradient" type="submit" style="width: 100%; padding: 10px; font-size: 27px;">Kill</button>
-                
+
             </form>
-            
+
             <div id="person-info"></div>
                 <div> did you mean?: <div id="kill-spell-suggestions"></div></div>
         </div>
