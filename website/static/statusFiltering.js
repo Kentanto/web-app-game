@@ -9,21 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
         peopleElements.forEach(person => {
             const status = person.dataset.status;
             if (showDead && showAlive) {
-                person.style.display = 'block'; // Show all people
+                person.style.display = 'block';
                 if (status.includes('dead')) {
-                    person.classList.add('dead'); // Add the 'dead' class
+                    person.classList.add('dead');
                 } else {
-                    person.classList.remove('dead'); // Remove the 'dead' class
+                    person.classList.remove('dead');
                 }
             } else if (showDead && status.includes('dead')) {
-                person.style.display = 'block'; // Show people with "dead" in their status
-                person.classList.add('dead'); // Add the 'dead' class
+                person.style.display = 'block';
+                person.classList.add('dead');
             } else if (showAlive && !status.includes('dead')) {
-                person.style.display = 'block'; // Show people without "dead" in their status
-                person.classList.remove('dead'); // Remove the 'dead' class
+                person.style.display = 'block';
+                person.classList.remove('dead');
             } else {
-                person.style.display = 'none'; // Hide the person
-                person.classList.remove('dead'); // Remove the 'dead' class
+                person.style.display = 'none';
+                person.classList.remove('dead');
             }
         });
     }
@@ -31,7 +31,5 @@ document.addEventListener('DOMContentLoaded', function() {
     filterCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', filterPeople);
     });
-
-    // Show all people by default
     filterPeople();
 });
