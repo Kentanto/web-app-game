@@ -19,13 +19,59 @@ document.addEventListener("DOMContentLoaded", function() {
         const shadowoverlap_left = document.getElementById("overlapshadow-left");
         const shadowoverlap_top = document.getElementById("overlapshadow-top");
         const shadowoverlap_bottom = document.getElementById("overlapshadow-bottom");
+        const reset_btn = document.getElementById("reset-game-btn");
+        const reset_btn_form = document.getElementById("password-form-container")        
+        const submitResetButton = document.getElementById("password-submit-form").querySelector("button[type='submit']");
 
     // the button calls for all the functions
     checkModifyBtn.addEventListener("click", function() {
         Check_Or_Modify_person();});
     killPersonBtn.addEventListener("click", function() {
         Kill_Person();});
+    reset_btn.addEventListener("click", function() {
+        Reset_Game();});
 
+function Reset_Game(){
+    showPasswordForm();
+    function showPasswordForm() {
+        reset_btn_form.classList.remove("hidden");
+        document.addEventListener("click", documentClickHandlerForPassword);
+        submitResetButton.addEventListener("submit", resetformSubmitHandler)
+    }
+    function hidePasswordForm() {
+        reset_btn_form.classList.add("hidden");
+        document.removeEventListener("click", documentClickHandlerForPassword);                
+        submitResetButton.removeEventListener("submit", resetformSubmitHandler)
+    }
+    function documentClickHandlerForPassword(event) {
+        if (!reset_btn_form.contains(event.target)
+            && event.target !== reset_btn
+            && event.target !== submitResetButton) {
+            hidePasswordForm();
+        }
+    }
+    function resetformSubmitHandler(event) {
+        event.preventDefault();
+    
+        const reset_formData = new FormData(submitResetButton);
+    
+        const reset_xhr = new XMLHttpRequest();
+        reset_xhr.open("POST", submitResetButton.action, true);
+        reset_xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        reset_xhr.onload = function() {
+            if (reset_xhr.status === 200) {
+                console.log("Form submitted successfully");
+            } else {
+                console.error("Form submission failed:", reset_xhr.status);
+            }
+        };
+        reset_xhr.onerror = function() {
+            console.error("Form submission error");
+        };
+        reset_xhr.send(reset_formData);
+        hidePasswordForm();
+    }
+}
 
 function Kill_Person(){
     //when kill_person_btn clicked, slide the form out and add listeners
@@ -64,10 +110,10 @@ function Kill_Person(){
         shadowoverlap_bottom.style.bottom = "";
         shadowoverlap_left.style.left = "";
         shadowoverlap_right.style.right = "";     
-        killPersonContainer.style.width = "0%";        
-        killPersonContainer.style.height = "0%";
-        killPersonContainer.style.top = "50%";      
-        killPersonContainer.style.right = "50%";
+        killPersonContainer.style.width = "";        
+        killPersonContainer.style.height = "";
+        killPersonContainer.style.top = "";      
+        killPersonContainer.style.right = "";
         setTimeout(function() {        
         killPersonContainer.classList.add("hidden");
         }, 50);        

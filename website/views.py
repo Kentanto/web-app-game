@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, jsonify
-from .model import Admin, Dead_people, Items, People, Picked_names, Teams
+from flask import Blueprint, flash, render_template, request, jsonify
+from .model import Admin, Dead_people, Items, People, Picked_characters, Picked_names, Teams
 from . import db
 from datetime import datetime
+import random
 head = Blueprint("head", __name__)
 
 @head.route("/")
@@ -64,7 +65,7 @@ def check_or_modify():
             elif modification_type == "Custom":
                     person.status = additional_info
                     db.session.commit()
-
+    
     return jsonify({'message': 'Success'})
 
 @head.route("/kill_person", methods=["POST"])
@@ -78,6 +79,7 @@ def kill_Person():
         dead_person_entry = Dead_people(names=person_to_kill, killer=killer, time_died=datetime.now())
         db.session.add(dead_person_entry)
         db.session.commit()
+    return jsonify({'message': 'Success'})
 
 @head.route("/get_person_info", methods=["POST"])
 def get_person_info():
@@ -91,8 +93,8 @@ def get_person_info():
             return jsonify({"html": html})
         else:
             return jsonify({"html": "<p>Person not found</p>"})
-
-
+        
+    
 
 def wagner_fischer(s1, s2):
     len_s1, len_s2 = len(s1), len(s2)
@@ -125,3 +127,45 @@ def spell_check():
 
     suggestions.sort(key=lambda x: x[1])
     return jsonify({"suggestions": suggestions[:1]})
+
+@head.route("/reset_game", methods=["post"] )
+def reset_game():    
+    the_one_the_only_password = "213"
+    password = request.form.get("password")
+    item_availability = {
+    "Tail wag of doom": 2,
+    "Yawn of doom": 2,
+    "Mystery game": 1,
+    "God's mercy": 1,
+    "D'baguette": 1,
+    "Eh'Syrup": 1,
+    "Raphael": 1,
+    "Atomic's curse": 1,
+    "Button of doom": 2,
+    "Senseless cloak": 1,
+    "Air strike of doom": 1,
+    "talk no jutsu": 1,
+    "Goal-post of doom": 1,
+    "Open net": 1,
+    "120 Ping": 1
+    }
+
+    if password == the_one_the_only_password:
+        new_seed = random.randint(1, 1000000)
+        admin_record = Admin.query.first()
+        admin_record.Seed = new_seed
+        Dead_people.query.delete()
+        items = Items.query.all()
+        for item in items:
+            if item.item_name in item_availability:
+                item.availability = item_availability[item.item_name]
+        people = People.query.all()
+        for person in people:
+            person.status = "alive"
+            person.items_use = ""        
+        Picked_characters.query.delete()
+        Picked_names.query.delete()
+        Teams.query.delete()        
+        db.session.commit()
+    
+    return render_template("index.html")

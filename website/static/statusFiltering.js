@@ -31,5 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     filterCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', filterPeople);
     });
+
     filterPeople();
 });

@@ -6,6 +6,7 @@
 
 <body>
     <script src="static/slide_In_functions.js"></script>
+    <script src="static/autocorrect.js"></script>
     <div id="main-page-content">
     <div id="RimShadow-right"></div>
     <div id="RimShadow-left"></div>
@@ -23,7 +24,7 @@
             <a class="btn" onclick="create_modify_team()">Create Or Modify A Team</a>
             <a class="btn" href="{{ url_for("head.view_dead_people") }}">Dead Status</a>
             <a class="btn" href="{{ url_for("head.view_people") }}">Status</a>
-            <a class="btn" onclick="reset_program()">Reset Game</a>
+            <a class="btn" id="reset-game-btn">Reset Game</a>
             <a class="btn" onclick="display_picked_names()">Pick Names</a>
             <a class="btn" onclick="kill_count()">Kill Count</a>
             <a class="btn" href="{{ url_for("head.view_items") }}">Items</a>
@@ -63,7 +64,6 @@
             <div> did you mean?: <div id="check-spell-suggestions"></div></div>
         </div>
     </div>
-    <script src="static/autocorrect.js"></script>
     <div id="kill_Person_container" class="hidden">
         <div class="form-container" style="width: 400px;">
             <h1 style="font-size: 36px;">Kill Person</h1>
@@ -80,6 +80,16 @@
 
             <div id="person-info"></div>
                 <div> did you mean?: <div id="kill-spell-suggestions"></div></div>
+        </div>
+    </div>
+    <div id="password-form-container" class="hidden">
+        <div class="form-container">
+            <h1 style="font-size: 25px;">I'll be needing a password for this one m8</h1>
+            <form id="password-submit-form" action="/reset_game" method="post">
+                <label for="password" style="font-size: 20px;">Password:</label>
+                <input required id="password" name="password" style="width: 95%; padding: 8px; font-size: 18px;">
+                <button class="main_gradient" type="submit" style="width: 100%; padding: 10px; font-size: 18px;">Submit</button>
+            </form>
         </div>
     </div>
 </body>
